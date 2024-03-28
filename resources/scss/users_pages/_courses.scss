@@ -1,0 +1,94 @@
+.courses-container {
+    margin: 20px auto;
+    width: 100%;
+    padding: 20px 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+
+    .course {
+        width: 240px;
+        height: 300px;
+        background-color: white;
+        border-radius:20px 30px 30px 0;
+        overflow: hidden;
+        .img {
+            position: relative;
+            .main-img {   
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                    object-position: center; 
+            }
+            .author-img {
+                
+                    position: absolute;
+                    left: 10px;
+                    top: 10px;
+                    width: 40px;
+                    height: 40px;
+                    border: 2px solid #f1f5f9;
+                    border-radius: 50%;
+                
+            }
+        }
+        .title {
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .info {
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+
+            button,a{
+                background-color: transparent;
+                border: none;
+                .like {
+                    color: rgba(255, 0, 0, 0.678);
+                }
+                .like,.active{
+                    font-size: 18px;
+                    cursor: pointer;
+                    &:hover{
+                        color: red ;
+                    }
+                }
+                .active{
+                    color: red ;
+                }
+                
+            }
+            .sub {
+                border: none;
+                
+                a {
+                    padding: 8px 10px;
+                    border-radius: 10px;
+                    color: white;
+                    background-color: #0075ff;
+                    text-decoration: none;
+                    cursor: pointer;
+                    &:hover, &:active {
+                        background: #0d69d5;
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+@media (max-width: 520px) {
+    .courses-container   {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        padding-bottom: 100px;
+        .course {
+            width: 220px;
+        }
+    }
+
+    
+}

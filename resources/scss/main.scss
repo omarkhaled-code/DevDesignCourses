@@ -1,0 +1,174 @@
+//main style
+@import url("./_links.scss");
+@import url("./_header.scss");
+
+// user pages style
+@import url("./users_pages/_courses.scss");
+@import url("./users_pages/_profile.scss");
+@import url("./users_pages/_setting.scss");
+@import url("./users_pages/_regiestratoin.scss");
+
+// courses pages style
+@import url("./courses/_show.scss");
+
+//form global
+@import url("./courses/_form.scss");
+
+//video info page
+@import url("./courses/video/_video.scss");
+
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color: #f1f5f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+    height: 20px;
+}
+::-webkit-scrollbar-track {
+    background-color: white;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #0075ff;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #0d69d5;
+}
+
+
+
+
+.container {
+    width: calc(100% - 225px);
+    height: calc(100vh - 60px);
+    position: absolute;
+    left: 225px;
+    top: 60px;
+    padding: 10px 20px;
+    text-align: center;
+
+    .heading {
+        h1 {
+            font-size: 30px;
+            margin: 0 10px;
+            width: fit-content;
+            font-weight: bold;
+            position: relative;
+            &::before, &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -10px;
+    
+                height: 3px;
+                border-radius: 30px;
+            }
+            &::before {
+                width: 30%;
+                background-color: black;
+            }
+    
+            &::after {
+                width: 70%;
+                background-color: white;
+                left: 30%;
+            }
+        }
+    }
+    
+}
+
+.header-info {
+    position: relative;
+}
+
+
+
+.layout {
+    z-index: 90;
+    background-color: rgba(0,0,0,0.41);
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.alert-box {
+    width: 450px;
+    height: 180px;
+    background: white;
+    margin-top: 10px;
+    position: absolute;
+    right: 40px;
+    top: 50px;
+    border-radius: 10px;
+    display: none;
+    .alert {    
+     
+        text-align: center;
+        padding: 10px 15px;
+        
+        h3 {
+            margin: 20px auto;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            align-items: center;
+        }
+        a, form .yes {
+            text-decoration: none;
+            margin: 20px auto;
+            font-size: 16px;
+            padding: 8px 15px;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+        }
+        form .yes {
+            background-color: #0075ff;
+        }
+        a.no {
+            background-color: rgb(255, 72, 0);
+        }
+    }
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        width: calc(100% - 100px);
+        left: 100px;
+    }
+    .alert-box {
+        width: 280px;         
+        right: 20px;
+        top: 100px;   
+         a {
+            font-size: 13px;
+
+         }
+    }
+    .layout {
+        background-color: rgba(0,0,0,0.41);
+
+    }
+}
+
+/* #alert background
+background: rgb(59 130 246 / 0.5);
+*/
