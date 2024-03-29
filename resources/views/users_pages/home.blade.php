@@ -65,6 +65,9 @@
             {{session('msg')}}
         @endif
         
+        
+            
+        
         @if ($courses->count() > 0)
 
         
@@ -84,36 +87,32 @@
 
 
                     <?php
+                        if($course) {
+                            $coursesLikeCount = $course->likes->count();
+                            $isLike = false;
+                            if($coursesLikeCount > 0) {
+                                $isLike = true;
+                            }
+                        }    
+                        ?>       
+                        @if ($isLike)
                         
-                        $coursesLikeCount = $course->likes->count();
-                        $isLike = false;
-                        if($coursesLikeCount > 0) {
-                            $isLike = true;
-                        }
-                        
-                        ?>
+                            <form action="{{route('courses.unlike',$course->id)}}" method="POST" >
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">
+                                    <i class="fa-solid fa-heart active"></i>
+                                </button>
+                            </form>
+                        @else 
 
-                       
-                    @if ($isLike)
-
-                    
-                        <form action="{{route('courses.unlike',$course->id)}}" method="POST" >
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">
-                                <i class="fa-solid fa-heart active"></i>
-                            </button>
-                        </form>
-                    @else 
-
-
-                        <form action="{{route('courses.like',$course->id)}}" method="POST">
-                            @csrf
-                            <button type="submit">
-                                <i class="fa-regular fa-heart like"></i>
-                            </button>
-                        </form>
-                    @endif
+                            <form action="{{route('courses.like',$course->id)}}" method="POST">
+                                @csrf
+                                <button type="submit">
+                                    <i class="fa-regular fa-heart like"></i>
+                                </button>
+                            </form>
+                        @endif
                     
 
 
@@ -122,22 +121,22 @@
                         
                         <?php
 
-                            $studentCourseCount = $course->students->count();
-                            $studentId = auth()->user()->id;
-                            $status = false;
-                            
-                            if($course->students->count() > 0) {
-                                for($i = 0; $i < $studentCourseCount; $i++) {
-                                    if($course->students[$i]->pivot->student_id === $studentId) {
-                                                                            
-                                        $status = true;
-                                        
-                                    }else {
-                                        $status = false;                                    
+                        $studentId = auth()->user()->id;
+                        $status = false;
+                        if($course->students) {
+                                $studentCourseCount = $course->students->count();
+                                    if($course->students->count() > 0) {
+                                        for($i = 0; $i < $studentCourseCount; $i++) {
+                                            if($course->students[$i]->pivot->student_id === $studentId) {
+                                                                                    
+                                                $status = true;
+                                                
+                                            }else {
+                                                $status = false;                                    
+                                            }
+                                        }
                                     }
                                 }
-                            }
-
                                 ?>
                                 @if ($status)
                                     <a href='/course-info/{{$course->id}}'>View</a>

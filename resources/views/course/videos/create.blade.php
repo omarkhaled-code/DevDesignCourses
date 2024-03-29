@@ -66,7 +66,38 @@
                 <input type="file" name="video" id="video">
                 
             </div>
+            <div>
+                <div class="bar"></div>
+                <div class="percent">0%</div>
+            </div>
             <button type="submit">Create</button>
         </form>
     </div>
+@endsection
+
+
+@section('name')
+    <script>
+        $(document).ready(function (){
+
+            var bar = $('.bar');
+            var percent = $('.percent')
+
+            $('form').ajaxForm({
+                beforeSend:function(){
+                    var percentVar='0%';
+                    bar.width(percentVar);
+                    percent.html(percentVar);
+                }
+                uploadProgress:function(event, position,total,percentComplete){
+                    var percentVar = percentComplete+"%";
+                    bar.width(percentVar);
+                    percent.html(percentVar)
+                }
+                complete:function(){
+                    alert('file is uploaded')
+                }
+            })
+        })
+    </script>
 @endsection
